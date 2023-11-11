@@ -91,7 +91,7 @@ async def get_location(message: types.Message, state: FSMContext, user: User):
     if ds_lev:
         await message.answer(
             f"{ds_lev.level} - {ds_lev.description} \b Losing Percentage: {ds_lev.percent}% \b\b"
-            f"How to treat {ds_lev.treatment}",
+            f"How to treat {ds_lev.treatment if ds_lev.treatment else ''}",
             reply_markup=menu_keyboard,
         )
     else:
