@@ -158,26 +158,26 @@ LIFESPAN_CONTEXT = "main.lifespan.lifespan_context"
 DJANGO_SETTINGS_MODULE = "main.settings.dev" if DEBUG else "main.settings.prod"
 
 # Logging
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-        },
-    },
-    "root": {
-        "handlers": ["console"],
-        "level": "WARNING",
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["console"],
-            "level": os.getenv("DJANGO_LOG_LEVEL", "ERROR"),
-            "propagate": False,
-        },
-    },
-}
+# LOGGING = {
+#     "version": 1,
+#     "disable_existing_loggers": False,
+#     "handlers": {
+#         "console": {
+#             "class": "logging.StreamHandler",
+#         },
+#     },
+#     "root": {
+#         "handlers": ["console"],
+#         "level": "WARNING",
+#     },
+#     "loggers": {
+#         "django": {
+#             "handlers": ["console"],
+#             "level": os.getenv("DJANGO_LOG_LEVEL", "ERROR"),
+#             "propagate": False,
+#         },
+#     },
+# }
 
 # Celery settings
 CELERY_BROKER_URL = "redis://localhost:6379"
@@ -297,3 +297,5 @@ JAZZMIN_SETTINGS = {
     # Add a language dropdown into the admin
     "language_chooser": False,
 }
+
+OPEN_WEATHER_API_KEY = env.str("OPEN_WEATHER_API_KEY", "")
