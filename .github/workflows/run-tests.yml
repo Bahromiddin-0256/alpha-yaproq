@@ -9,7 +9,7 @@ jobs:
         run: cd /home/alpha-yaproq/ && git pull
         
       - name: Update requirements
-        run: cd /home/alpha-yaproq/ && source venv/bin/activate && pip install -r requirements/production.txt
+        run: cd /home/alpha-yaproq/ && source venv/bin/activate && pip install -r requirements.txt
       
       - name: Check
         run: cd /home/alpha-yaproq/ && source venv/bin/activate && python manage.py test
@@ -21,4 +21,4 @@ jobs:
         run: cd /home/alpha-yaproq/ && source venv/bin/activate && python manage.py collectstatic --noinput
 
       - name: Restart
-        run: cd /home/alpha-yaproq/ && sudo systemctl restart g-ponipora.service && sudo systemctl restart daphne.service
+        run: cd /home/alpha-yaproq/ && sudo systemctl restart g-yaproq.service && sudo systemctl restart daphne.service
