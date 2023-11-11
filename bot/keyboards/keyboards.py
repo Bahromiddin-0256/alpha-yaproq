@@ -19,12 +19,12 @@ plantes_btn = ReplyKeyboardMarkup(
         [
             KeyboardButton(text="🌾 Bug'doy"),
         ],
-        #     [
-        #     KeyboardButton(text="🌿 Kakain")
-        #     ],
-        #     [
-        #     KeyboardButton(text="🌳 Geroyin")
-        # ]
+            [
+            KeyboardButton(text="🌿 Kakain")
+            ],
+            [
+            KeyboardButton(text="🌳 Geroyin")
+        ]
     ],
     resize_keyboard=True,
 )

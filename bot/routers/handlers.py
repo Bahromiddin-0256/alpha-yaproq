@@ -62,8 +62,7 @@ async def get_location(message: types.Message, state: FSMContext):
     await state.set_state(GetData.photo)
 
 
-# @router_handler.message(GetData.photo, F.photo)
-@router_handler.message(F.photo)
+@router_handler.message(GetData.photo, F.photo)
 async def get_location(message: types.Message, state: FSMContext, user: User):
 
     bot_ = Bot(settings.BOT_TOKEN, parse_mode="HTML", session=bot_session_)
