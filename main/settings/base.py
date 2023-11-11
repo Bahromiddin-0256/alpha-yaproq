@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "users",
     "utils",
+    "common",
+    "diagnosis",
     "bot",
 ]
 
@@ -64,8 +66,11 @@ TEMPLATES = [
         },
     },
 ]
+
 SET_WEBHOOK = env.bool("SET_WEBHOOK", default=False)
+
 WSGI_APPLICATION = "main.wsgi.application"
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

@@ -35,7 +35,6 @@ DATABASES = {
     }
 }
 
-CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
 
 ###################################################################
 # CORS
