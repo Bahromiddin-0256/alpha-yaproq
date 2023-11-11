@@ -1,6 +1,7 @@
 import json
 import os
 from pathlib import Path
+import sentry_sdk
 
 import environ
 from dotenv import load_dotenv
@@ -299,3 +300,16 @@ JAZZMIN_SETTINGS = {
 }
 
 OPEN_WEATHER_API_KEY = env.str("OPEN_WEATHER_API_KEY", "")
+
+SENTRY_DSN = env.str("SENTRY_DSN", "")
+
+sentry_sdk.init(
+    dsn=SENTRY_DSN,
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)
