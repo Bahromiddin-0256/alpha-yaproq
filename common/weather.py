@@ -19,5 +19,17 @@ class Weather:
         response = requests.get(url, params=params)
         return response.json()
 
+    def get_current_air_pollution(self, lat, lon):
+        "http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={API key}"
+        url = self.url + f"air_pollution?lat={lat}&lon={lon}&appid={self.api_key}"
+        response = requests.get(url)
+        return response.json()
+
+    def get_forecast_air_pollution(self, lat, lon):
+        "http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat={lat}&lon={lon}&appid={API key}"
+        url = self.url + f"air_pollution/forecast?lat={lat}&lon={lon}&appid={self.api_key}"
+        response = requests.get(url)
+        return response.json()
+
 
 WEATHER_CLIENT = Weather()
