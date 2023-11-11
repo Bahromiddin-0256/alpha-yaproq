@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'django_celery_results',
+    "django_celery_results",
     "django_celery_beat",
     "users",
     "utils",
@@ -186,7 +186,7 @@ DJANGO_SETTINGS_MODULE = "main.settings.dev" if DEBUG else "main.settings.prod"
 CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
 CELERY_TIMEZONE = "Asia/Tashkent"
-CELERY_CACHE_BACKEND = 'django-cache'
+CELERY_CACHE_BACKEND = "django-cache"
 
 STATICFILES_DIRS = [BASE_DIR / "staticfiles"]
 
