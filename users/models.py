@@ -30,7 +30,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         ),
     )
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
-
+    latitude = models.FloatField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
     objects = UserManager()
     USERNAME_FIELD = "phone"
     REQUIRED_FIELDS = ("telegram_id",)
