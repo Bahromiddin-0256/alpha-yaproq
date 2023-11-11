@@ -1,22 +1,20 @@
-import datetime
 import re
 
-from aiogram import Bot, F, Router, enums, types
+from aiogram import Bot, F, Router, types
 from aiogram.client.session.aiohttp import AiohttpSession
-from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from django.conf import settings
-from django.utils.translation import gettext_lazy as _
 
 from bot.filters.states import GetData
 from bot.keyboards.keyboards import location_btn, menu_keyboard, plantes_btn
+from common.weather import WEATHER_CLIENT
 from diagnosis.models import Diagnosis, DiseaseLevel
 from users.models import User
 
 bot_session_ = AiohttpSession()
 
-
 router_handler = Router()
+
 
 # @router_handler.message(Command("start"))
 @router_handler.message(F.text == "💊 Kasallikni tekshirish")
@@ -65,7 +63,6 @@ async def get_location(message: types.Message, state: FSMContext):
 # @router_handler.message(GetData.photo, F.photo)
 @router_handler.message(F.photo)
 async def get_location(message: types.Message, state: FSMContext, user: User):
-
     bot_ = Bot(settings.BOT_TOKEN, parse_mode="HTML", session=bot_session_)
 
     file_id = message.photo[-1].file_id
@@ -97,3 +94,8 @@ async def get_location(message: types.Message, state: FSMContext, user: User):
     else:
         await message.answer(f"Kasallik topilmadi holat - {diagnosis.result}", reply_markup=menu_keyboard)
     # await state.finish()
+
+
+@router_handler.message(F.text == "🌡 Havo harorati va namlik")
+def air_humidity():
+    WEATHER_CLIENT.get_forecast()
