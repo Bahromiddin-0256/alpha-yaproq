@@ -16,7 +16,7 @@ class Diagnosis(BaseModel):
         return self.name
 
     def predict_disease(self):
-        result= process_image(self.image.path)
+        result = process_image(self.image.path)
         self.result = result
         return result
 

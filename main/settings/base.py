@@ -1,9 +1,9 @@
 import json
 import os
 from pathlib import Path
-import sentry_sdk
 
 import environ
+import sentry_sdk
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
