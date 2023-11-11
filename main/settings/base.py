@@ -75,10 +75,7 @@ CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "my_db.sqlite3",
-    }
+    "default": {}
 }
 
 # Cache settings
@@ -180,3 +177,6 @@ LOGGING = {
 # Celery settings
 CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
+STATICFILES_DIRS = [
+    BASE_DIR / "staticfiles"
+]

@@ -2,9 +2,9 @@ from aiogram import Router, types
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from django.utils.translation import gettext_lazy as _
-from bot.keyboards.keyboards import menu_keyboard
 
 from bot.filters.states import Registration
+from bot.keyboards.keyboards import menu_keyboard
 from users.models import User
 
 router = Router()
@@ -12,13 +12,18 @@ router = Router()
 
 @router.message(Command("start"))
 async def on_start(message: types.Message, user: User):
-    await message.answer("Assalomu alaykum. Men sizga o'simliklarni kasalliklarini aniqlashga, ularni davolashga va kelajakda kelishi mumkin bo'lgan kasalliklarni oldini olishga yordam beraman.", reply_markup=menu_keyboard)
-   
+    await message.answer(
+        "Assalomu alaykum. Men sizga o'simliklarni kasalliklarini aniqlashga, ularni davolashga va kelajakda kelishi mumkin bo'lgan kasalliklarni oldini olishga yordam beraman.",
+        reply_markup=menu_keyboard,
+    )
+
 
 @router.message(Command("help"))
 async def on_start(message: types.Message, user: User):
-    await message.reply("Bot orqali siz o'simliklarni kasalliklarini aniqlashga, ularni davolashga va kelajakda kelishi mumkin bo'lgan kasalliklarni oldini olishga yordam beraman.", reply_markup=menu_keyboard)
-    
+    await message.reply(
+        "Bot orqali siz o'simliklarni kasalliklarini aniqlashga, ularni davolashga va kelajakda kelishi mumkin bo'lgan kasalliklarni oldini olishga yordam beraman.",
+        reply_markup=menu_keyboard,
+    )
 
 
 @router.message(Command("help"))
