@@ -2,11 +2,16 @@ import json
 import os
 from pathlib import Path
 
+import environ
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 load_dotenv(BASE_DIR / ".env")
+
+# READING ENV
+env = environ.Env()
+env.read_env(os.path.join(BASE_DIR, ".env"))
 
 HOST = os.environ["HOST"]
 SECRET_KEY = os.environ["SECRET_KEY"]
