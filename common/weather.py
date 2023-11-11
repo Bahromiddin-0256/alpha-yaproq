@@ -1,6 +1,6 @@
 import requests
 from django.conf import settings
-
+import pprint
 
 class Weather:
     def __init__(self):
