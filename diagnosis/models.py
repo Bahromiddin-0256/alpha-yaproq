@@ -18,7 +18,6 @@ class Diagnosis(BaseModel):
     def predict_disease(self):
         result, percent = process_image(self.image.path)
         self.result = result
-        self.percent = percent
         return result
 
 
