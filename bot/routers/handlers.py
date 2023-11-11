@@ -51,15 +51,13 @@ async def get_day(message: types.Message, state=FSMContext):
     await state.set_state(GetData.photo)
 
 
-
-
 @router_handler.message(GetData.photo, F.text)
 async def get_location(message: types.Message, state=FSMContext):
     await message.answer("Bug'doyni rasmini yuboring")
     await state.set_state(GetData.photo)
-    
+
+
 @router_handler.message(GetData.photo, F.photo)
 async def get_location(message: types.Message, state=FSMContext):
     photo = message.photo
     print(photo)
-    

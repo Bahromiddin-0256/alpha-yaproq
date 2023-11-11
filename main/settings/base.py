@@ -297,3 +297,5 @@ JAZZMIN_SETTINGS = {
     # Add a language dropdown into the admin
     "language_chooser": False,
 }
+
+OPEN_WEATHER_API_KEY = env.str("OPEN_WEATHER_API_KEY", "")
