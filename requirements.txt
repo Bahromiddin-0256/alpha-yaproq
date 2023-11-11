@@ -10,4 +10,7 @@ psycopg2-binary
 psycopg2-binary==2.9.9
 django-jazzmin==2.6.0
 python-environ==0.4.54
-fastai
+fastai==2.7.13
+torch==2.1.0+cpu
+torchaudio==2.1.0+cpu
+torchvision==0.16.0+cpu
