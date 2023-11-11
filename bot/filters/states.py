@@ -6,8 +6,9 @@ class Registration(StatesGroup):
     last_name = State()
 
 
-class get_kasallik(StatesGroup):
+class GetDisease(StatesGroup):
     location = State()
+
 
 class GetData(StatesGroup):
     location = State()

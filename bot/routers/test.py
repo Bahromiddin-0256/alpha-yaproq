@@ -3,7 +3,7 @@ from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from django.utils.translation import gettext_lazy as _
 
-from bot.filters.states import Registration, get_kasallik
+from bot.filters.states import Registration, GetDisease
 from bot.keyboards.keyboards import menu_keyboard, location_btn
 from users.models import User
 
@@ -30,10 +30,10 @@ async def on_start(message: types.Message, user: User):
 async def send_welcome(message: types.Message, state: FSMContext):
     txt = "Sizni fermangizga yaqinida qanday kasalliklar borligini bilish uchun joylashuvni yuboring"
     await message.reply(txt, reply_markup=location_btn)
-    await state.set_state(get_kasallik.location)
+    await state.set_state(GetDisease.location)
     
     
-@router.message(F.location, get_kasallik.location)
+@router.message(F.location, GetDisease.location)
 async def get_location(message: types.Message, state: FSMContext, user: User):
     longitude = message.location.longitude
     latitude = message.location.latitude
