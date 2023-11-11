@@ -1,0 +1,1 @@
+# weather_api = f"https://www.7timer.info/bin/astro.php?lon={}&lat={}&ac=0&unit=metric&output=json&tzshift=0"
