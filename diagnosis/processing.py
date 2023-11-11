@@ -5,7 +5,7 @@ from fastai.vision.all import *
 
 
 def process_image(image_path):
-    learner = load_learner("data_model/yaproq_2.pkl", pickle_module=dill)
+    learner = load_learner("data_models/yaproq_2.pkl", pickle_module=dill)
     img = cv.imread(image_path)
     bigger = cv.resize(img, (224, 224))
 
