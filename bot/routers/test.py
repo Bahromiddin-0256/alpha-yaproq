@@ -1,10 +1,10 @@
-from aiogram import Router, types, F
+from aiogram import F, Router, types
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from django.utils.translation import gettext_lazy as _
 
-from bot.filters.states import Registration, GetDisease
-from bot.keyboards.keyboards import menu_keyboard, location_btn
+from bot.filters.states import GetDisease, Registration
+from bot.keyboards.keyboards import location_btn, menu_keyboard
 from users.models import User
 
 router = Router()
@@ -31,8 +31,8 @@ async def send_welcome(message: types.Message, state: FSMContext):
     txt = "Sizni fermangizga yaqinida qanday kasalliklar borligini bilish uchun joylashuvni yuboring"
     await message.reply(txt, reply_markup=location_btn)
     await state.set_state(GetDisease.location)
-    
-    
+
+
 @router.message(F.location, GetDisease.location)
 async def get_location(message: types.Message, state: FSMContext, user: User):
     longitude = message.location.longitude
@@ -41,11 +41,10 @@ async def get_location(message: types.Message, state: FSMContext, user: User):
     await message.reply(f"Joylashuv: {longitude}, {latitude}")
 
     txt = "Sizga yaqin atrofdagi fermalarda quyidagi kasalliklar topilgan:"
-    
+
     kasallik1 = "Sizdan shimoliy-sharq tomonida 2 km masofada bulgan fermalarda <b>Yellow rust</b> kasalligi topilgan. Kasallikning darajasi 30%. \n"
     kasallik1 += "Bu kasallikni oldini olish bo'yicha ehtiyotkorlik chorasi ko'rishni maslahat beraman. \n\n"
-    
-    
+
     s = """
     We recommend following organic control methods in the early stages of a disease or when the crop is close to harvesting. In more advanced stages of a disease, please follow chemical control measures. Mixing or applying different products at the same time is not recommended.
 
@@ -60,9 +59,7 @@ Always consider an integrated approach with preventive measures together with bi
     await message.answer(kasallik1)
     await message.answer(s, reply_markup=menu_keyboard)
     await state.clear()
-    
-    
-    
+
 
 @router.message(Command("help"))
 async def start_register_user(message: types.Message, state: FSMContext):

@@ -95,7 +95,6 @@ async def get_location(message: types.Message, state: FSMContext, user: User):
     await state.clear()
 
 
-
 @router_handler.message(F.text == "🌡 Havo harorati va namlik")
 def air_humidity():
     WEATHER_CLIENT.get_forecast()
