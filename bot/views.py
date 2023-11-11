@@ -1,11 +1,13 @@
-from .misc import dp, bot
 import json
+
 from django.http import HttpResponse
+
+from .misc import bot, dp
 
 
 async def process_update(request, token: str):
     if token == bot.token:
-        body_unicode = request.body.decode('utf-8')
+        body_unicode = request.body.decode("utf-8")
         update = json.loads(body_unicode)
         await dp.feed_raw_update(bot, update)
         return HttpResponse(status=200)

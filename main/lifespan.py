@@ -1,9 +1,7 @@
 import contextlib
 
-from bot.misc import (
-    on_startup as bot_on_startup,
-    on_shutdown as bot_on_shutdown
-)
+from bot.misc import on_shutdown as bot_on_shutdown
+from bot.misc import on_startup as bot_on_startup
 
 
 @contextlib.asynccontextmanager

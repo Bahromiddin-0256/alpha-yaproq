@@ -1,19 +1,19 @@
-from typing import Dict, Any, Optional, cast
+from typing import Any, Dict, Optional, cast
 
 from aiogram import Bot
 from aiogram.fsm.state import State
-from aiogram.fsm.storage.base import BaseStorage, StorageKey, StateType
-from aiogram.fsm.storage.redis import KeyBuilder, DefaultKeyBuilder
+from aiogram.fsm.storage.base import BaseStorage, StateType, StorageKey
+from aiogram.fsm.storage.redis import DefaultKeyBuilder, KeyBuilder
 from django.core.cache import cache
 from redis.typing import ExpiryT
 
 
 class DjangoRedisStorage(BaseStorage):
     def __init__(
-            self,
-            key_builder: Optional[KeyBuilder] = None,
-            state_ttl: Optional[ExpiryT] = None,
-            data_ttl: Optional[ExpiryT] = None,
+        self,
+        key_builder: Optional[KeyBuilder] = None,
+        state_ttl: Optional[ExpiryT] = None,
+        data_ttl: Optional[ExpiryT] = None,
     ):
         if key_builder is None:
             key_builder = DefaultKeyBuilder()

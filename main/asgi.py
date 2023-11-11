@@ -51,6 +51,6 @@ def get_asgi_application():
     return ASGIHandler()
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', DJANGO_SETTINGS_MODULE)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", DJANGO_SETTINGS_MODULE)
 
 application = get_asgi_application()
