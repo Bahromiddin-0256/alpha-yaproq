@@ -12,4 +12,4 @@ def process_image(image_path):
 
     image = cv.cvtColor(bigger, cv.COLOR_BGR2RGB)
     pred, _, prob = learner.predict(image)
-    return pred
+    return pred, prob * 100

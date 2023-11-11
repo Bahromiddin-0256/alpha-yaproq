@@ -91,5 +91,5 @@ async def get_location(message: types.Message, state: FSMContext, user: User):
     if ds_lev:
         await message.answer(f"{ds_lev.level} {ds_lev.description} {ds_lev.percent}", reply_markup=menu_keyboard)
     else:
-        await message.answer(f"Kasallik topilmadi{diagnosis.result}", reply_markup=menu_keyboard)
+        await message.answer(f"Kasallik topilmadi {diagnosis.result}", reply_markup=menu_keyboard)
     # await state.finish()
