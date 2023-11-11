@@ -89,7 +89,7 @@ async def get_location(message: types.Message, state: FSMContext, user: User):
     await diagnosis.asave()
     ds_lev = await DiseaseLevel.objects.filter(level=diagnosis.result).afirst()
     if ds_lev:
-        await message.answer(f"{ds_lev.level} {ds_lev.description} {ds_lev.percent}", reply_markup=menu_keyboard)
+        await message.answer(f"{ds_lev.level} - {ds_lev.description} \b Losing Percentage: {ds_lev.percent} %", reply_markup=menu_keyboard)
     else:
-        await message.answer(f"Kasallik topilmadi {diagnosis.result}", reply_markup=menu_keyboard)
+        await message.answer(f"Kasallik topilmadi holat - {diagnosis.result}", reply_markup=menu_keyboard)
     # await state.finish()
