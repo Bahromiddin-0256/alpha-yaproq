@@ -1,4 +1,5 @@
 import datetime
+import re
 
 from aiogram import F, Router, enums, types
 from aiogram.filters import Command
@@ -25,7 +26,7 @@ async def send_welcome(message: types.Message, state=FSMContext):
 
 
 @router_handler.message(GetData.location, F.location)
-async def get_location(message: types.Message, state=FSMContext):
+async def get_location(message: types.Message, state: FSMContext, user: User):
     longitude = message.location.longitude
     latitude = message.location.latitude
 
@@ -33,6 +34,9 @@ async def get_location(message: types.Message, state=FSMContext):
         lon=longitude,
         lat=latitude,
     )
+    user.latitude = latitude
+    user.longitude = longitude
+    await user.asave()
     await message.reply(f"Bug'doyzor manzili: {longitude}, {latitude}")
 
     await message.answer("Bug'doy qachon ekilganligini kiriting (25/11/2023)", reply_markup=types.ReplyKeyboardRemove())
@@ -42,6 +46,7 @@ async def get_location(message: types.Message, state=FSMContext):
 @router_handler.message(GetData.day, F.text)
 async def get_day(message: types.Message, state=FSMContext):
     await state.update_data(day=message.text)
+    print(re.match("\b\d{1,2}/\d{1,2}/\d{4}\b", message.text))
     await message.answer("Bug'doyni hozirgi rasmini yuboring")
     await state.set_state(GetData.photo)
 
