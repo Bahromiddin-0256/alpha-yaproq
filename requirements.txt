@@ -9,3 +9,7 @@ uvicorn==0.20.0
 psycopg2-binary
 psycopg2-binary==2.9.9
 django-jazzmin==2.6.0
+python-environ==0.4.54
+fastai==2.7.13
+opencv-python==4.8.1.78
+dill==0.3.7

@@ -370,4 +370,4 @@ Temporary Items
 ### macOS Patch ###
 # iCloud generated files
 *.icloud
-
+my_db.sqlite3
