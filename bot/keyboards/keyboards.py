@@ -9,7 +9,7 @@ menu_keyboard = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text="💊 Kasallikni tekshirish"), KeyboardButton(text="Maslahat olish")],
         [KeyboardButton(text="Yaqin atrofdagi fermalarda nima gap?")],
-        [KeyboardButton(text="🌡 Havo harorati va namlik"), KeyboardButton(text="Maslahat olish")],
+        [KeyboardButton(text="🌡 Havo harorati va namlik")],
         [KeyboardButton(text="📞 Aloqa")],
     ],
     resize_keyboard=True,
