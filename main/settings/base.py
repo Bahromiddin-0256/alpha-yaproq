@@ -183,6 +183,8 @@ DJANGO_SETTINGS_MODULE = "main.settings.dev" if DEBUG else "main.settings.prod"
 # Celery settings
 CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_TIMEZONE = "Asia/Tashkent"
+
 STATICFILES_DIRS = [BASE_DIR / "staticfiles"]
 
 
