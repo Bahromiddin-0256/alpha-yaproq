@@ -13,7 +13,8 @@ router = Router()
 @router.message(Command("start"))
 async def on_start(message: types.Message, user: User):
     await message.answer(
-        "Assalomu alaykum. Men sizga o'simliklarni kasalliklarini aniqlashga, ularni davolashga va kelajakda kelishi mumkin bo'lgan kasalliklarni oldini olishga yordam beraman.",
+        "Assalomu alaykum. Men sizga o'simliklarni kasalliklarini aniqlashga, ularni davolashga va kelajakda kelishi "
+        "mumkin bo'lgan kasalliklarni oldini olishga yordam beraman.",
         reply_markup=menu_keyboard,
     )
 
@@ -21,7 +22,8 @@ async def on_start(message: types.Message, user: User):
 @router.message(Command("help"))
 async def on_start(message: types.Message, user: User):
     await message.reply(
-        "Bot orqali siz o'simliklarni kasalliklarini aniqlashga, ularni davolashga va kelajakda kelishi mumkin bo'lgan kasalliklarni oldini olishga yordam beraman.",
+        "Bot orqali siz o'simliklarni kasalliklarini aniqlashga, ularni davolashga va kelajakda kelishi mumkin bo'lgan "
+        "kasalliklarni oldini olishga yordam beraman.",
         reply_markup=menu_keyboard,
     )
 
@@ -42,19 +44,29 @@ async def get_location(message: types.Message, state: FSMContext, user: User):
 
     txt = "Sizga yaqin atrofdagi fermalarda quyidagi kasalliklar topilgan:"
 
-    kasallik1 = "Sizdan shimoliy-sharq tomonida 2 km masofada bulgan fermalarda <b>Yellow rust</b> kasalligi topilgan. Kasallikning darajasi 30%. \n"
+    kasallik1 = (
+        "Sizdan shimoliy-sharq tomonida 2 km masofada bulgan fermalarda <b>Yellow rust</b> "
+        "kasalligi topilgan. "
+        "Kasallikning darajasi 30%. \n"
+    )
     kasallik1 += "Bu kasallikni oldini olish bo'yicha ehtiyotkorlik chorasi ko'rishni maslahat beraman. \n\n"
 
     s = """
-    We recommend following organic control methods in the early stages of a disease or when the crop is close to harvesting. In more advanced stages of a disease, please follow chemical control measures. Mixing or applying different products at the same time is not recommended.
+    We recommend following organic control methods in the early stages of a disease or when the crop is close to
+    harvesting. In more advanced stages of a disease, please follow chemical control measures. Mixing or applying
+    different products at the same time is not recommended.
 
 ``` Organic Control ```
 
-Many biofungicides are available in the market. Products based on Bacillus pumilus applied at 7 to 14 days intervals are effective against the fungus and are marketed by major actors of the industry.
+Many biofungicides are available in the market. Products based on Bacillus pumilus applied at 7 to 14 days intervals
+are effective against the fungus and are marketed by major actors of the industry.
 
 ``` Chemical Control ```
 
-Always consider an integrated approach with preventive measures together with biological treatments if available. Foliar sprays of fungicides belonging to the strobilurin class provide effective protection against the disease when the application is done preventively. In already infected fields, use products belonging to the triazole family or mixes of both products."""
+Always consider an integrated approach with preventive measures together with biological treatments if available.
+ Foliar sprays of fungicides belonging to the strobilurin class provide effective protection against the disease when
+ the application is done preventively. In already infected fields, use products belonging to the triazole family or
+ mixes of both products."""
     await message.answer(txt)
     await message.answer(kasallik1)
     await message.answer(s, reply_markup=menu_keyboard)

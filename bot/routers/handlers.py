@@ -61,7 +61,7 @@ async def get_location(message: types.Message, state: FSMContext):
 
 
 @router_handler.message(GetData.photo, F.photo)
-async def get_location(message: types.Message, state: FSMContext, user: User):
+async def get_diagnosis(message: types.Message, state: FSMContext, user: User):
     bot_ = Bot(settings.BOT_TOKEN, parse_mode="HTML", session=bot_session_)
 
     file_id = message.photo[-1].file_id
