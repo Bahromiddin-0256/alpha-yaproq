@@ -39,6 +39,7 @@ class DiseaseLevel(BaseModel):
     disease = models.ForeignKey(Disease, on_delete=models.CASCADE, related_name="levels")
     level = models.CharField(max_length=100, unique=True)
     description = models.TextField()
+    percent = models.FloatField(default=0)
 
     def __str__(self):
         return self.level

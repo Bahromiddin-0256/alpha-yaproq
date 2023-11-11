@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 
 from bot.filters.states import GetData
 from bot.keyboards.keyboards import location_btn, menu_keyboard, plantes_btn
-from diagnosis.models import Diagnosis
+from diagnosis.models import Diagnosis, DiseaseLevel
 from users.models import User
 
 bot_session_ = AiohttpSession()
@@ -87,6 +87,9 @@ async def get_location(message: types.Message, state: FSMContext, user: User):
     diagnosis.description = "Bug'doy"
     diagnosis.predict_disease()
     await diagnosis.asave()
-
-    await message.answer(f"{diagnosis.result}", reply_markup=menu_keyboard)
+    ds_lev = DiseaseLevel.objects.filter(result=diagnosis.result).first()
+    if ds_lev:
+        await message.answer(f"{ds_lev.result} {ds_lev.description} {ds_lev.percent}", reply_markup=menu_keyboard)
+    else:
+        await message.answer(f"Kasallik topilmadi{diagnosis.result}", reply_markup=menu_keyboard)
     # await state.finish()
