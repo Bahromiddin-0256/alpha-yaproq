@@ -13,3 +13,9 @@ class GetData(StatesGroup):
     day = State()
     photo = State()
     last = State()
+
+
+class WeatherData(StatesGroup):
+    location = State()
+    lon = State()
+    lat = State()

@@ -16,9 +16,8 @@ class Diagnosis(BaseModel):
         return self.name
 
     def predict_disease(self):
-        result, percent = process_image(self.image.path)
+        result = process_image(self.image.path)
         self.result = result
-        self.percent = percent
         return result
 
 
@@ -42,6 +41,7 @@ class DiseaseLevel(BaseModel):
     level = models.CharField(max_length=100, unique=True)
     description = models.TextField()
     percent = models.FloatField(default=0)
+    treatment = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.level
