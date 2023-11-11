@@ -2,11 +2,16 @@ import json
 import os
 from pathlib import Path
 
+import environ
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 load_dotenv(BASE_DIR / ".env")
+
+# READING ENV
+env = environ.Env()
+env.read_env(os.path.join(BASE_DIR, ".env"))
 
 HOST = os.environ["HOST"]
 SECRET_KEY = os.environ["SECRET_KEY"]
@@ -28,6 +33,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "users",
     "utils",
+    "common",
+    "diagnosis",
     "bot",
 ]
 
@@ -60,7 +67,10 @@ TEMPLATES = [
     },
 ]
 
+SET_WEBHOOK = env.bool("SET_WEBHOOK", default=False)
+
 WSGI_APPLICATION = "main.wsgi.application"
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

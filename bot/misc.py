@@ -20,7 +20,7 @@ dp.update.outer_middleware.register(i18n.I18Middleware())
 
 
 async def on_startup():
-    if not settings.DEBUG:
+    if settings.SET_WEBHOOK:
         webhook_info = await bot.get_webhook_info()
         webhook_url = get_webhook_url()
         if webhook_url != webhook_info.url:

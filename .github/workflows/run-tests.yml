@@ -1,0 +1,24 @@
+name: Run tests
+on: push
+jobs:
+  execute_tests:
+    name: Install requirements and execute tests
+    runs-on: self-hosted
+    steps:
+      - name: Git Pull
+        run: cd /home/alpha-yaproq/ && git pull
+        
+      - name: Update requirements
+        run: cd /home/alpha-yaproq/ && source venv/bin/activate && pip install -r requirements.txt
+      
+      - name: Check
+        run: cd /home/alpha-yaproq/ && source venv/bin/activate && python manage.py test
+
+      - name: Migrate
+        run: cd /home/alpha-yaproq/ && source venv/bin/activate && python manage.py migrate
+
+      - name: Collect static
+        run: cd /home/alpha-yaproq/ && source venv/bin/activate && python manage.py collectstatic --noinput
+
+      - name: Restart
+        run: cd /home/alpha-yaproq/ && sudo systemctl restart g-yaproq.service && sudo systemctl restart daphne.service
