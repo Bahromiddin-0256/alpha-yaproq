@@ -64,7 +64,7 @@ TEMPLATES = [
         },
     },
 ]
-
+SET_WEBHOOK = env.bool("SET_WEBHOOK", default=False)
 WSGI_APPLICATION = "main.wsgi.application"
 
 # Database
