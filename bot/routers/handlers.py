@@ -92,7 +92,8 @@ async def get_location(message: types.Message, state: FSMContext, user: User):
         )
     else:
         await message.answer(f"Kasallik topilmadi holat - {diagnosis.result}", reply_markup=menu_keyboard)
-    # await state.finish()
+    await state.clear()
+
 
 
 @router_handler.message(F.text == "🌡 Havo harorati va namlik")

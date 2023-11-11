@@ -8,6 +8,7 @@ from aiogram.types import (
 menu_keyboard = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text="💊 Kasallikni tekshirish"), KeyboardButton(text="Maslahat olish")],
+        [KeyboardButton(text="Yaqin atrofdagi fermalarda nima gap?")],
         [KeyboardButton(text="📞 Aloqa")],
     ],
     resize_keyboard=True,
