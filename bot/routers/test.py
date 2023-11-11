@@ -11,9 +11,7 @@ router = Router()
 
 @router.message(Command("start"))
 async def on_start(message: types.Message, user: User):
-    await message.reply(
-        _("Salom, {first_name}").format(first_name=user.first_name)
-    )
+    await message.reply(_("Salom, {first_name}").format(first_name=user.first_name))
 
 
 @router.message(Command("registration"))
@@ -34,7 +32,7 @@ async def registration_finish(message: types.Message, state: FSMContext):
     data = await state.get_data()
     await message.answer(str(_("Ro'yhatga olish yakunlandi.")))
     await message.answer(
-        _("Ism: {first_name}\n").format(first_name=data.get('first_name')) +
-        _("Familiya: {last_name}\n").format(last_name=message.text),
+        _("Ism: {first_name}\n").format(first_name=data.get("first_name"))
+        + _("Familiya: {last_name}\n").format(last_name=message.text),
     )
     await state.clear()
