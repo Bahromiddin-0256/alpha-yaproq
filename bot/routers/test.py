@@ -38,7 +38,7 @@ async def get_location(message: types.Message, state: FSMContext, user: User):
     longitude = message.location.longitude
     latitude = message.location.latitude
 
-    await message.reply(f"Location: {longitude}, {latitude}")
+    # await message.reply(f"Location: {longitude}, {latitude}")
 
     txt = "The following diseases have been found on farms near you:"
 
