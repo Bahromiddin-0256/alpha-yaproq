@@ -86,9 +86,32 @@ async def get_diagnosis(message: types.Message, state: GetData, user: User):
             reply_markup=menu_keyboard,
         )
        
+        ## get user location
+        longitude = user.longitude
+        latitude = user.latitude
+        
+        weather = WEATHER_CLIENT.get_forecast(longitude, latitude)
+        
+        txt = "Expected humidity for the next 5 days:\n\n"
+        for hour_ in range(0, len(weather['list']), 8):
+            hour = weather['list'][hour_]
+            humidity = hour['main']['humidity']
+            weather = 2 if hour['weather']['main'] == "Clear" else 1 if hour['weather']['main'] == "Rain" else 0
+            severity = ds_lev.percent
+            
+            # if hour['main']['humidity'] >= 0: ###  
+            #     txt += f"🕔 {hour['dt_txt'].split(' ')[0]} da \n   ☁️  humidity: {hour['main']['humidity']} \n    🌡 temp: {hour['main']['temp']}\n"
+        warning = "I ask you to pay more attention to your harvest during these times with humidity of 80% and more!"
+
     else:
         await message.answer(f"Disease not found status - {diagnosis.result}", reply_markup=menu_keyboard)
     await state.clear()
+    
+   
+    
+    
+    
+    
 
 
 @router_handler.message(F.text == "🌡 Air temperature and humidity")
@@ -104,7 +127,7 @@ async def get_location(message: types.Message, state: WeatherData, user: User):
     latitude = message.location.latitude
     weather = WEATHER_CLIENT.get_forecast(longitude, latitude)
     
-    name = weather['city']['name']
+    # name = weather['city']['name']
     
     # txt = f"{name}\n"
     txt = "Expected humidity for the next 5 days:\n\n"

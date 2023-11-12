@@ -1,6 +1,12 @@
 # Yaproq Bot
 #### You can try the Yaproq Bot [enter through this link](https://t.me/yaproq1bot)
+Open source data links that we used:
+
+Weather: [OpenWeatherMap](https://openweathermap.org/)
+
+DataSet: [Kaggle](https://www.kaggle.com/datasets/tolgahayit/yellowrust19-yellow-rust-disease-in-wheat)
 #
+
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -77,7 +83,6 @@ Don't forget to give the project a star! Thanks again!
 
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
