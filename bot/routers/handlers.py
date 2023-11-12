@@ -11,6 +11,7 @@ from common.weather import WEATHER_CLIENT
 from diagnosis.models import Diagnosis, DiseaseLevel
 from users.models import User
 from diagnosis.processing import process_result
+
 bot_session_ = AiohttpSession()
 
 router_handler = Router()
@@ -43,16 +44,14 @@ async def get_location(message: types.Message, state: GetData, user: User):
     # await message.reply(f"Wheat field address: {longitude}, {latitude}")
 
     # await message.answer("Enter when wheat is planted (25/11/2023)", reply_markup=types.ReplyKeyboardRemove())
-#     await state.set_state(GetData.day)
+    #     await state.set_state(GetData.day)
 
-
-# @router_handler.message(GetData.day, F.text)
-# async def get_day(message: types.Message, state: GetData):
-#     await state.update_data(day=message.text)
-#     print(re.match("\b\d{1,2}/\d{1,2}/\d{4}\b", message.text))
+    # @router_handler.message(GetData.day, F.text)
+    # async def get_day(message: types.Message, state: GetData):
+    #     await state.update_data(day=message.text)
+    #     print(re.match("\b\d{1,2}/\d{1,2}/\d{4}\b", message.text))
     await message.answer("Submit a current photo of Wheat", reply_markup=types.ReplyKeyboardRemove())
     await state.set_state(GetData.photo)
-
 
 
 @router_handler.message(GetData.photo, F.photo)
@@ -76,7 +75,7 @@ async def get_diagnosis(message: types.Message, state: GetData, user: User):
     diagnosis.image = f"diagnosis/{file_id}.jpg"
     diagnosis.name = "Bug'doy"
     diagnosis.description = "Bug'doy"
-    # diagnosis.predict_disease()
+    diagnosis.predict_disease()
     await diagnosis.asave()
     ds_lev = await DiseaseLevel.objects.filter(level=diagnosis.result).afirst()
     if ds_lev:
@@ -85,31 +84,37 @@ async def get_diagnosis(message: types.Message, state: GetData, user: User):
             f"How to treat {ds_lev.treatment if ds_lev.treatment else ''}",
             reply_markup=menu_keyboard,
         )
-       
+
         ## get user location
         longitude = user.longitude
         latitude = user.latitude
-        
+
         weather = WEATHER_CLIENT.get_forecast(longitude, latitude)
-        
+
         i = 0
         weather_list = []
         humidity_list = []
         # print(weather['list'][0])
-        for hour_ in range(0, len(weather['list']), 8):
+        for hour_ in range(0, len(weather["list"]), 8):
             i += 1
-            hour = weather['list'][hour_]
-            humidity = hour['main']['humidity']
+            hour = weather["list"][hour_]
+            humidity = hour["main"]["humidity"]
             # humidity = 70
-            weather_ = 1 if hour.get('weather', [{}])[0].get('main') == "Rain" else 0 if hour['weather'][0]['main'] == "Clouds" else 2
+            weather_ = (
+                1
+                if hour.get("weather", [{}])[0].get("main") == "Rain"
+                else 0
+                if hour["weather"][0]["main"] == "Clouds"
+                else 2
+            )
             # weather_ = 1
             weather_list.append(weather_)
             humidity_list.append(humidity)
             if i == 5:
                 break
-            
-        severity = ds_lev.percent/100
-            
+
+        severity = ds_lev.percent / 100
+
         res = process_result(weather_list, humidity_list, severity)
         print(res)
         await message.answer("Next 5 daily status:")
@@ -121,20 +126,15 @@ async def get_diagnosis(message: types.Message, state: GetData, user: User):
             else:
                 new_ = "Status:  🟢  Low "
             await message.answer(new_)
-        
-    
-            # if hour['main']['humidity'] >= 0: ###  
+
+            # if hour['main']['humidity'] >= 0: ###
             #     txt += f"🕔 {hour['dt_txt'].split(' ')[0]} da \n   ☁️  humidity: {hour['main']['humidity']} \n    🌡 temp: {hour['main']['temp']}\n"
         # warning = "I ask you to pay more attention to your harvest during these times with humidity of 80% and more!"
 
     else:
         await message.answer(f"Disease not found status ", reply_markup=menu_keyboard)
-    
-   
+
     await state.clear()
-    
-    
-    
 
 
 @router_handler.message(F.text == "🌡 Air temperature and humidity")
@@ -149,21 +149,21 @@ async def get_location(message: types.Message, state: WeatherData, user: User):
     longitude = message.location.longitude
     latitude = message.location.latitude
     weather = WEATHER_CLIENT.get_forecast(longitude, latitude)
-    
+
     # name = weather['city']['name']
-    
+
     # txt = f"{name}\n"
     txt = "Expected humidity for the next 5 days:\n\n"
-    for hour_ in range(0, len(weather['list']), 8):
-        hour = weather['list'][hour_]
-        if hour['main']['humidity'] >= 50: #comment
+    for hour_ in range(0, len(weather["list"]), 8):
+        hour = weather["list"][hour_]
+        if hour["main"]["humidity"] >= 50:  # comment
             txt += f"🕔 {hour['dt_txt'].split(' ')[0]} da \n   ☁️  humidity: {hour['main']['humidity']} \n    🌡 temp: {hour['main']['temp']}\n"
     warning = "I ask you to pay more attention to your harvest during these times with humidity of 80% and more!"
     await message.answer(txt)
     await message.answer(warning, reply_markup=menu_keyboard)
-    
+
     await state.clear()
-    
+
 
 @router_handler.message(F.text == "Get advice")
 async def get_location(message: types.Message):
@@ -188,9 +188,8 @@ Always consider an integrated approach with preventive measures together with bi
  mixes of both products."""
     await message.answer(kasallik1)
     await message.answer(s, reply_markup=menu_keyboard)
-    
-    
-    
+
+
 @router_handler.message(F.text == "📞 Contact")
 async def get_location(message: types.Message):
     txt = "How can I contact the ALPHA team?\n\n"
@@ -200,5 +199,5 @@ async def get_location(message: types.Message):
     txt += "👨‍💻Muhammadaliyev Nodirjon\n📞 Phone: +998 99 493 41 82\nTelegram: @Nodirjon2505\n\n"
     txt += "👨‍💻Ibragimov Bahromiddin\n📞 Phone: +998 94 561 19 14\nTelegram: @bahromiddin\n\n"
     txt += "👨‍💻Hasanov Diyorbek\n📞 Phone: +998 94 324 40 90\nTelegram: @khdiyorbek\n\n"
-    
+
     await message.answer(txt, reply_markup=menu_keyboard)

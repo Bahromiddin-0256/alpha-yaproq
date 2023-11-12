@@ -17,7 +17,7 @@ Yaproq is telegram bot to predict and analysis wheat crop and find probability o
 
 ### Installation
 
-This are the steps to install the project and environment 
+This are the steps to install the project and environment
 
 - Clone the repo
    ```sh
@@ -51,7 +51,7 @@ This are the steps to install the project and environment
     ```
 - To run the bot in development run and to run the bot in production just run
     ```sh
-    python manage.py runbot 
+    python manage.py runbot
     uvicorn main.asgi:application
     ```
 
@@ -59,7 +59,7 @@ This are the steps to install the project and environment
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-After you press the start button, there will be appear menu and you can choose one of them. You can check the disease and its level by sending the picture and also you can check the situation on the near farms and check the weather information. If there is any problem with the near farms or weather that might be cause to yellow rust, we will warn you and give recommendations. 
+After you press the start button, there will be appear menu and you can choose one of them. You can check the disease and its level by sending the picture and also you can check the situation on the near farms and check the weather information. If there is any problem with the near farms or weather that might be cause to yellow rust, we will warn you and give recommendations.
 
 ![Alt text](image.png)
 
@@ -101,7 +101,3 @@ ALPHA team:
 - 👨‍💻 [Hasanov Diyorbek](https://github.com/)
 
 Project Link: [https://github.com/Bahromiddin-0256/alpha-yaproq](https://github.com/Bahromiddin-0256/alpha-yaproq)
-
-
-
-
