@@ -13,8 +13,7 @@ router = Router()
 @router.message(Command("start"))
 async def on_start(message: types.Message, user: User):
     await message.answer(
-        "Assalomu alaykum. Men sizga o'simliklarni kasalliklarini aniqlashga, ularni davolashga va kelajakda kelishi "
-        "mumkin bo'lgan kasalliklarni oldini olishga yordam beraman.",
+        "Hello. I will help you identify plant diseases, treat them and prevent future diseases.",
         reply_markup=menu_keyboard,
     )
 
@@ -22,15 +21,14 @@ async def on_start(message: types.Message, user: User):
 @router.message(Command("help"))
 async def on_start(message: types.Message, user: User):
     await message.reply(
-        "Bot orqali siz o'simliklarni kasalliklarini aniqlashga, ularni davolashga va kelajakda kelishi mumkin bo'lgan "
-        "kasalliklarni oldini olishga yordam beraman.",
+        "Through the bot, I will help you identify plant diseases, treat them and prevent future diseases.",
         reply_markup=menu_keyboard,
     )
 
 
-@router.message(F.text == "Yaqin atrofdagi fermalarda nima gap?")
+@router.message(F.text == "What's up with the nearby farms?")
 async def send_welcome(message: types.Message, state: FSMContext):
-    txt = "Sizni fermangizga yaqinida qanday kasalliklar borligini bilish uchun joylashuvni yuboring"
+    txt = "Submit your location to find out what diseases are near your farm"
     await message.reply(txt, reply_markup=location_btn)
     await state.set_state(GetDisease.location)
 
@@ -40,16 +38,17 @@ async def get_location(message: types.Message, state: FSMContext, user: User):
     longitude = message.location.longitude
     latitude = message.location.latitude
 
-    await message.reply(f"Joylashuv: {longitude}, {latitude}")
+    await message.reply(f"Location: {longitude}, {latitude}")
 
-    txt = "Sizga yaqin atrofdagi fermalarda quyidagi kasalliklar topilgan:"
+    txt = "The following diseases have been found on farms near you:"
 
     kasallik1 = (
-        "Sizdan shimoliy-sharq tomonida 2 km masofada bulgan fermalarda <b>Yellow rust</b> "
-        "kasalligi topilgan. "
-        "Kasallikning darajasi 30%. \n"
+       "Yellow rust on farms 2 km northeast of you"
+         "disease was found."
+         "30% disease rate. \n"
     )
-    kasallik1 += "Bu kasallikni oldini olish bo'yicha ehtiyotkorlik chorasi ko'rishni maslahat beraman. \n\n"
+    
+    kasallik1 += "I advise you to take precautionary measures to prevent this disease. \n\n"
 
     s = """
     We recommend following organic control methods in the early stages of a disease or when the crop is close to

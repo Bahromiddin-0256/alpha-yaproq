@@ -7,10 +7,10 @@ from aiogram.types import (
 
 menu_keyboard = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text="💊 Kasallikni tekshirish"), KeyboardButton(text="Maslahat olish")],
-        [KeyboardButton(text="Yaqin atrofdagi fermalarda nima gap?")],
-        [KeyboardButton(text="🌡 Havo harorati va namlik")],
-        [KeyboardButton(text="📞 Aloqa")],
+        [KeyboardButton(text="💊 Check the disease"), KeyboardButton(text="Get advice")],
+        [KeyboardButton(text="What's up with the nearby farms?")],
+        [KeyboardButton(text="🌡 Air temperature and humidity")],
+        [KeyboardButton(text="📞 Contact")],
     ],
     resize_keyboard=True,
 )
@@ -19,7 +19,7 @@ menu_keyboard = ReplyKeyboardMarkup(
 plantes_btn = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text="🌾 Bug'doy"),
+            KeyboardButton(text="🌾 Wheat"),
         ],
     ],
     resize_keyboard=True,
@@ -29,7 +29,7 @@ plantes_btn = ReplyKeyboardMarkup(
 location_btn = ReplyKeyboardMarkup(
     keyboard=[
         [
-            KeyboardButton(text="📍 Joylashuvni yuborish", request_location=True),
+            KeyboardButton(text="📍 Send location", request_location=True),
         ]
     ],
     resize_keyboard=True,
