@@ -10,7 +10,7 @@ from bot.keyboards.keyboards import location_btn, menu_keyboard, plantes_btn
 from common.weather import WEATHER_CLIENT
 from diagnosis.models import Diagnosis, DiseaseLevel
 from users.models import User
-
+from diagnosis.processing import process_result
 bot_session_ = AiohttpSession()
 
 router_handler = Router()
@@ -93,15 +93,34 @@ async def get_diagnosis(message: types.Message, state: GetData, user: User):
         weather = WEATHER_CLIENT.get_forecast(longitude, latitude)
         
         txt = "Expected humidity for the next 5 days:\n\n"
+        i = 0
+        weather_list = []
+        humidity_list = []
         for hour_ in range(0, len(weather['list']), 8):
+            i += 1
             hour = weather['list'][hour_]
             humidity = hour['main']['humidity']
             weather = 2 if hour['weather']['main'] == "Clear" else 1 if hour['weather']['main'] == "Rain" else 0
-            severity = ds_lev.percent
+            weather_list.append(weather)
+            humidity_list.append(humidity)
+            if i == 2:
+                break
             
+        severity = ds_lev.percent
+            
+        res = process_result(weather_list, humidity_list, severity)
+        for i in res:
+            if i == "High":
+                new_ = "Status:  🔴 "
+            elif i == "Moderate":
+                new_ = "Status:  🟡 "
+            else:
+                new_ = "Status: 🟢 "
+            await message.answer(new_)
+        
             # if hour['main']['humidity'] >= 0: ###  
             #     txt += f"🕔 {hour['dt_txt'].split(' ')[0]} da \n   ☁️  humidity: {hour['main']['humidity']} \n    🌡 temp: {hour['main']['temp']}\n"
-        warning = "I ask you to pay more attention to your harvest during these times with humidity of 80% and more!"
+        # warning = "I ask you to pay more attention to your harvest during these times with humidity of 80% and more!"
 
     else:
         await message.answer(f"Disease not found status - {diagnosis.result}", reply_markup=menu_keyboard)
