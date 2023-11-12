@@ -54,7 +54,6 @@ async def get_day(message: types.Message, state: GetData):
     await state.set_state(GetData.photo)
 
 
-
 @router_handler.message(GetData.photo, F.photo)
 async def get_diagnosis(message: types.Message, state: GetData, user: User):
     bot_ = Bot(settings.BOT_TOKEN, parse_mode="HTML", session=bot_session_)
@@ -85,7 +84,7 @@ async def get_diagnosis(message: types.Message, state: GetData, user: User):
             f"How to treat {ds_lev.treatment if ds_lev.treatment else ''}",
             reply_markup=menu_keyboard,
         )
-       
+
     else:
         await message.answer(f"Kasallik topilmadi holat - {diagnosis.result}", reply_markup=menu_keyboard)
     await state.clear()
@@ -103,21 +102,21 @@ async def get_location(message: types.Message, state: WeatherData, user: User):
     longitude = message.location.longitude
     latitude = message.location.latitude
     weather = WEATHER_CLIENT.get_forecast(longitude, latitude)
-    
-    name = weather['city']['name']
-    
+
+    name = weather["city"]["name"]
+
     # txt = f"{name}\n"
     txt = "Yaqin 5 kundagi kutilayotgan ob-havo namliklari:\n\n"
-    for hour_ in range(0, len(weather['list']), 8):
-        hour = weather['list'][hour_]
-        if hour['main']['humidity'] >= 30:
+    for hour_ in range(0, len(weather["list"]), 8):
+        hour = weather["list"][hour_]
+        if hour["main"]["humidity"] >= 30:
             txt += f"🕔 {hour['dt_txt'].split(' ')[0]} da \n   ☁️  namlik: {hour['main']['humidity']} \n    temp: {hour['main']['temp']}\n"
     warning = "Siz ushbu vaqtlarda 90% va undan ortiq namlikda hosilingizga e'tiborliroq bo'lishingizni so'rayman!"
     await message.answer(txt)
     await message.answer(warning, reply_markup=menu_keyboard)
-    
+
     await state.clear()
-    
+
 
 @router_handler.message(GetData.photo, F.text)
 async def get_location(message: types.Message, state: GetData):
