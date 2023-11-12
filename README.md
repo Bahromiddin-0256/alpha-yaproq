@@ -1,45 +1,41 @@
 # Yaproq Bot
-#### Yaproq botni [usbu link orqali kirib](https://t.me/yaproq1bot) ko'rib ishlatib ko'rishingiz mumkin
+#### You can try the Yaproq Bot [enter through this link](https://t.me/yaproq1bot)
 #
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Yaproq is telegram bot to predict and analysis wheat crop and find probability of yellow rust on the crop. It can detect the level of disease and gives the treatment recommendations. And also can predict the rate of yellow rust by using Humadity, temperature and current disease level.
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
 
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+This are the steps to install the project and environment 
 
-1. Clone the repo
+- Clone the repo
    ```sh
    git clone https://github.com/Bahromiddin-0256/alpha-yaproq.git
    ```
-2. Create virtual environment  and activate
+- Create virtual environment  and activate
    ```sh
    virtualenv venv && source venv/bin/activate
    ```
-3. Install PyTorch to your computer [WebSite](https://pytorch.org/)
+- Install PyTorch to your computer [WebSite](https://pytorch.org/)
     ```sh
     pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
     ```
 
-4. Install requirements (kerakli kutubxonalarni o'rnatib bo'lgunicha biroz vaqt olishi mumkin)
+- Install requirements (kerakli kutubxonalarni o'rnatib bo'lgunicha biroz vaqt olishi mumkin)
    ```sh
    pip install -r requirements.txt
    ```
 
-5. Copy [.env.example](https://github.com/Bahromiddin-0256/alpha-yaproq/blob/main/.env.example)  to .env and change variables to yours
+- Copy [.env.example](https://github.com/Bahromiddin-0256/alpha-yaproq/blob/main/.env.example)  to .env and change variables to yours
    ```sh
    cp .env.example .env
    ```
-6. Malumotlar bazasini saqlang
+- Malumotlar bazasini saqlang
     ```sh
     python manage.py makemigrations && python manage.py migrate
     ```
@@ -57,8 +53,8 @@ _Below is an example of how you can instruct your audience on installing and set
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+After you press the start button, there will be appear menu and you can choose one of them. You can check the disease and its level by sending the picture and also you can check the situation on the near farms and check the weather information. If there is any problem with the near farms or weather that might be cause to yellow rust, we will warn you and give recommendations. 
 
-Telegram botga kirib /start buyrug'idan so'ng sizdaquidagi komandalar chiqadi
 ![Alt text](image.png)
 
 

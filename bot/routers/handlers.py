@@ -40,17 +40,17 @@ async def get_location(message: types.Message, state: GetData, user: User):
     user.latitude = latitude
     user.longitude = longitude
     await user.asave()
-    await message.reply(f"Wheat field address: {longitude}, {latitude}")
+    # await message.reply(f"Wheat field address: {longitude}, {latitude}")
 
-    await message.answer("Enter when wheat is planted (25/11/2023)", reply_markup=types.ReplyKeyboardRemove())
-    await state.set_state(GetData.day)
+    # await message.answer("Enter when wheat is planted (25/11/2023)", reply_markup=types.ReplyKeyboardRemove())
+#     await state.set_state(GetData.day)
 
 
-@router_handler.message(GetData.day, F.text)
-async def get_day(message: types.Message, state: GetData):
-    await state.update_data(day=message.text)
-    print(re.match("\b\d{1,2}/\d{1,2}/\d{4}\b", message.text))
-    await message.answer("Submit a current photo of Wheat")
+# @router_handler.message(GetData.day, F.text)
+# async def get_day(message: types.Message, state: GetData):
+#     await state.update_data(day=message.text)
+#     print(re.match("\b\d{1,2}/\d{1,2}/\d{4}\b", message.text))
+    await message.answer("Submit a current photo of Wheat", reply_markup=types.ReplyKeyboardRemove())
     await state.set_state(GetData.photo)
 
 
