@@ -92,7 +92,6 @@ async def get_diagnosis(message: types.Message, state: GetData, user: User):
         
         weather = WEATHER_CLIENT.get_forecast(longitude, latitude)
         
-        txt = "Expected humidity for the next 5 days:\n\n"
         i = 0
         weather_list = []
         humidity_list = []
@@ -109,6 +108,7 @@ async def get_diagnosis(message: types.Message, state: GetData, user: User):
         severity = ds_lev.percent
             
         res = process_result(weather_list, humidity_list, severity)
+        await message.answer("Next 2 daily:")
         for i in res:
             if i == "High":
                 new_ = "Status:  🔴 "
