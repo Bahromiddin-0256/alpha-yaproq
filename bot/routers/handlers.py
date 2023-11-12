@@ -100,7 +100,7 @@ async def get_diagnosis(message: types.Message, state: GetData, user: User):
             i += 1
             hour = weather['list'][hour_]
             humidity = hour['main']['humidity']
-            weather = 2 if hour['weather']['main'] == "Clear" else 1 if hour['weather']['main'] == "Rain" else 0
+            weather = 2
             weather_list.append(weather)
             humidity_list.append(humidity)
             if i == 2:
