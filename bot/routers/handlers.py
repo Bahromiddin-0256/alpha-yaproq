@@ -76,7 +76,7 @@ async def get_diagnosis(message: types.Message, state: GetData, user: User):
     diagnosis.image = f"diagnosis/{file_id}.jpg"
     diagnosis.name = "Bug'doy"
     diagnosis.description = "Bug'doy"
-    diagnosis.predict_disease()
+    # diagnosis.predict_disease()
     await diagnosis.asave()
     ds_lev = await DiseaseLevel.objects.filter(level=diagnosis.result).afirst()
     if ds_lev:
@@ -95,39 +95,43 @@ async def get_diagnosis(message: types.Message, state: GetData, user: User):
         i = 0
         weather_list = []
         humidity_list = []
+        # print(weather['list'][0])
         for hour_ in range(0, len(weather['list']), 8):
             i += 1
             hour = weather['list'][hour_]
             humidity = hour['main']['humidity']
-            weather = 2
-            weather_list.append(weather)
+            # humidity = 70
+            weather_ = 1 if hour.get('weather', [{}])[0].get('main') == "Rain" else 0 if hour['weather'][0]['main'] == "Clouds" else 2
+            # weather_ = 1
+            weather_list.append(weather_)
             humidity_list.append(humidity)
-            if i == 2:
+            if i == 5:
                 break
             
-        severity = ds_lev.percent
+        severity = ds_lev.percent/100
             
         res = process_result(weather_list, humidity_list, severity)
-        await message.answer("Next 2 daily:")
+        print(res)
+        await message.answer("Next 5 daily status:")
         for i in res:
             if i == "High":
-                new_ = "Status:  🔴 "
+                new_ = f"Status:  🔴 {i}"
             elif i == "Moderate":
-                new_ = "Status:  🟡 "
+                new_ = f"Status:  🟡 {i}"
             else:
-                new_ = "Status: 🟢 "
+                new_ = "Status:  🟢  Low "
             await message.answer(new_)
         
+    
             # if hour['main']['humidity'] >= 0: ###  
             #     txt += f"🕔 {hour['dt_txt'].split(' ')[0]} da \n   ☁️  humidity: {hour['main']['humidity']} \n    🌡 temp: {hour['main']['temp']}\n"
         # warning = "I ask you to pay more attention to your harvest during these times with humidity of 80% and more!"
 
     else:
-        await message.answer(f"Disease not found status - {diagnosis.result}", reply_markup=menu_keyboard)
-    await state.clear()
+        await message.answer(f"Disease not found status ", reply_markup=menu_keyboard)
     
    
-    
+    await state.clear()
     
     
     
@@ -171,12 +175,12 @@ async def get_location(message: types.Message):
     harvesting. In more advanced stages of a disease, please follow chemical control measures. Mixing or applying
     different products at the same time is not recommended.
 
-``` Organic Control ```
+<code>Organic Control</code>
 
 Many biofungicides are available in the market. Products based on Bacillus pumilus applied at 7 to 14 days intervals
 are effective against the fungus and are marketed by major actors of the industry.
 
-``` Chemical Control ```
+```Chemical Control```
 
 Always consider an integrated approach with preventive measures together with biological treatments if available.
  Foliar sprays of fungicides belonging to the strobilurin class provide effective protection against the disease when
