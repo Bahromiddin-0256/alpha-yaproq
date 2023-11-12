@@ -152,7 +152,7 @@ async def get_location(message: types.Message, state: WeatherData, user: User):
     txt = "Expected humidity for the next 5 days:\n\n"
     for hour_ in range(0, len(weather['list']), 8):
         hour = weather['list'][hour_]
-        if hour['main']['humidity'] >= 80 and hour['main']['temp'] >= 8 and hour['main']['temp'] <= 35: #comment
+        if hour['main']['humidity'] >= 50: #comment
             txt += f"🕔 {hour['dt_txt'].split(' ')[0]} da \n   ☁️  humidity: {hour['main']['humidity']} \n    🌡 temp: {hour['main']['temp']}\n"
     warning = "I ask you to pay more attention to your harvest during these times with humidity of 80% and more!"
     await message.answer(txt)
