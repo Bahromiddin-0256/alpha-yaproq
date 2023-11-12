@@ -72,11 +72,11 @@ async def get_diagnosis(message: types.Message, state: GetData, user: User):
     await bot_session_.close()
 
     diagnosis = Diagnosis()
-    # diagnosis.user = user
+    diagnosis.user = user
     diagnosis.image = f"diagnosis/{file_id}.jpg"
     diagnosis.name = "Bug'doy"
     diagnosis.description = "Bug'doy"
-    # diagnosis.predict_disease()
+    diagnosis.predict_disease()
     await diagnosis.asave()
     ds_lev = await DiseaseLevel.objects.filter(level=diagnosis.result).afirst()
     if ds_lev:
