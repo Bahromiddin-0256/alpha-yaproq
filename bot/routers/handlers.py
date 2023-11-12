@@ -9,8 +9,8 @@ from bot.filters.states import GetData, WeatherData
 from bot.keyboards.keyboards import location_btn, menu_keyboard, plantes_btn
 from common.weather import WEATHER_CLIENT
 from diagnosis.models import Diagnosis, DiseaseLevel
-from users.models import User
 from diagnosis.processing import process_result
+from users.models import User
 
 bot_session_ = AiohttpSession()
 

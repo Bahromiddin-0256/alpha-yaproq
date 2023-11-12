@@ -42,12 +42,8 @@ async def get_location(message: types.Message, state: FSMContext, user: User):
 
     txt = "The following diseases have been found on farms near you:"
 
-    kasallik1 = (
-       "Yellow rust on farms 2 km northeast of you"
-         "disease was found."
-         "30% disease rate. \n"
-    )
-    
+    kasallik1 = "Yellow rust on farms 2 km northeast of you" "disease was found." "30% disease rate. \n"
+
     kasallik1 += "I advise you to take precautionary measures to prevent this disease. \n\n"
 
     s = """
