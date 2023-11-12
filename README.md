@@ -1,5 +1,5 @@
 # Yaproq Bot
-#### Yaproq botni usbu link orqali kirib ko'rib ishlatib ko'rishingiz mumkin
+#### Yaproq botni [usbu link orqali kirib](https://t.me/yaproq1bot) ko'rib ishlatib ko'rishingiz mumkin
 #
 
 <!-- GETTING STARTED -->
@@ -62,7 +62,7 @@ Telegram botga kirib /start buyrug'idan so'ng sizdaquidagi komandalar chiqadi
 ![Alt text](image.png)
 
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/Bahromiddin-0256/alpha-yaproq/issues) for a full list of proposed features (and known issues).
 
 
 <!-- CONTRIBUTING -->
@@ -89,15 +89,15 @@ Don't forget to give the project a star! Thanks again!
 ## Contact
 ALPHA team:
 
-- 👨‍💻 Ibragimov Bahromiddin
+- 👨‍💻 [Ibragimov Bahromiddin](https://github.com/Bahromiddin-0256)
 
-- 👨‍💻 Mamatmusayev Jaloliddin
+- 👨‍💻 [Mamatmusayev Jaloliddin](https://github.com/jaloliddin1006)
 
-- 👨‍💻 Sindarov Jo'rabek
+- 👨‍💻 [Sindarov Jo'rabek](https://github.com/jurabek004)
 
-- 👨‍💻 Muhammadaliyev Nodirjon
+- 👨‍💻 [Muhammadaliyev Nodirjon](https://github.com/muhammadaliyevnodirjon)
 
-- 👨‍💻 Hasanov Diyorbek
+- 👨‍💻 [Hasanov Diyorbek](https://github.com/)
 
 Project Link: [https://github.com/Bahromiddin-0256/alpha-yaproq](https://github.com/Bahromiddin-0256/alpha-yaproq)
 
