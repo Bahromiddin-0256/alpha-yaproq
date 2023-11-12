@@ -153,6 +153,6 @@ async def get_location(message: types.Message):
     txt += "👨‍💻Mamatmusayev Jaloliddin\n📞 Phone: +998 93 297 74 19\nTelegram: @Jaloliddin_Mamatmusayev\n\n"
     txt += "👨‍💻Muhammadaliyev Nodirjon\n📞 Phone: +998 99 493 41 82\nTelegram: @Nodirjon2505\n\n"
     txt += "👨‍💻Ibragimov Bahromiddin\n📞 Phone: +998 94 561 19 14\nTelegram: @bahromiddin\n\n"
-    txt += "👨‍💻Hasanov Diyorbek\n📞 Phone: +998 90 067 04 16\nTelegram: @khdiyorbek\n\n"
+    txt += "👨‍💻Hasanov Diyorbek\n📞 Phone: +998 94 324 40 90\nTelegram: @khdiyorbek\n\n"
     
     await message.answer(txt, reply_markup=menu_keyboard)
