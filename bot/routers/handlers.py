@@ -91,7 +91,7 @@ async def get_diagnosis(message: types.Message, state: GetData, user: User):
     await state.clear()
 
 
-@router_handler.message(F.text == "🌡 Havo harorati va namlik")
+@router_handler.message(F.text == "🌡 Air temperature and humidity")
 async def air_humidity(message: types.Message, state: WeatherData):
     txt = "Submit your current location to find out the nearby Air temperature and humidity"
     await message.reply(txt, reply_markup=location_btn)
