@@ -68,7 +68,11 @@ After you press the start button, there will be appear menu and you can choose o
 # You can watch the video in here : [Video Link](https://drive.google.com/file/d/1o5vLT0GODdQGHL8FIgKSQ_dO0VyhggBH/view?usp=drivesdk)
 
 ### Or this watch:
-<video src="video_2023-11-12_13-47-49.mp4" controls title="Title"></video>
+
+
+https://github.com/Bahromiddin-0256/alpha-yaproq/assets/70073648/8dc9cb2f-4bf3-47c5-937d-6836ad2b0075
+
+
 #
 See the [open issues](https://github.com/Bahromiddin-0256/alpha-yaproq/issues) for a full list of proposed features (and known issues).
 
